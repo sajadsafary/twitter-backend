@@ -36,22 +36,24 @@ class Profile(models.Model):
 
     bio = models.CharField(
         max_length=255,
+        default=None,
         null=True,
         blank=True
     )
 
     born_at = models.DateField(
         _('birth date'),
+        default=None,
         null=True,
         blank=True
     )
 
-    image = models.ImageField(
-        _('Image'),
-        upload_to=f'user-{user}/profile/',
-        blank=True,
-        null=True
-    )
+    # image = models.ImageField(
+    #     _('Image'),
+    #     upload_to=f'user-{user}/profile/',
+    #     blank=True,
+    #     null=True
+    # )
 
     def __str__(self):
         return f'{self.user} Profile'
