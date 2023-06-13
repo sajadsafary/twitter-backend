@@ -27,6 +27,8 @@ class User(AbstractUser):
     def __str__(self):
         return self.get_username()
 
+def user_directory_path(instance, file_name):
+    return f'user_{instance.user.pk}/profile/{file_name}'
 
 class Profile(models.Model):
     user = models.OneToOneField(
@@ -48,12 +50,12 @@ class Profile(models.Model):
         blank=True
     )
 
-    # image = models.ImageField(
-    #     _('Image'),
-    #     upload_to=f'user-{user}/profile/',
-    #     blank=True,
-    #     null=True
-    # )
+    image = models.ImageField(
+        _('Image'),
+        upload_to=user_directory_path,
+        blank=True,
+        null=True
+    )
 
     def __str__(self):
         return f'{self.user} Profile'
